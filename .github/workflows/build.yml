@@ -15,8 +15,6 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v2
       - uses: GuillaumeFalourd/setup-windows10-sdk-action@v2
-        with:
-          sdk-version: 15063
       - name: Build app for release
         run: msbuild "Hourglass-Resurrection.sln" -t:rebuild -verbosity:diag -property:Configuration=Release
       - name: print build
