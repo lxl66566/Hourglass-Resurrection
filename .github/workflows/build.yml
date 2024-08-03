@@ -9,14 +9,11 @@ on:
 jobs:
   build:
     name: build
-    runs-on: windows-latest
+    runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v2
-      - uses: GuillaumeFalourd/setup-windows10-sdk-action@v2
-        with:
-          sdk-version: 15063
+      - name: install sdk and vs
+        run: choco install windows-sdk-10.0 visualstudio2022buildtools
       - name: Build app for release
         run: msbuild "Hourglass-Resurrection.sln" -t:rebuild -verbosity:diag -property:Configuration=Release
       - name: print build
